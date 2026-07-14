@@ -1,0 +1,92 @@
+general:
+  name: Robertus Diawan Chris
+  email: diawan@protonmail.com
+  urls:
+    - https://bruhtus.github.io
+    - https://github.com/bruhtus
+    - https://youtube.com/@bruhtusnull
+
+experiences:
+  - positions:
+      - title: Career Break
+        startDate: 2025-10
+        endDate: present
+        highlights:
+          - Exploring low-level programming such as kernel development.
+  - organization: Linux Foundation
+    location: Remote
+    positions:
+      - title: Mentee (Linux kernel Spring Unpaid 2026)
+        startDate: 2026-03
+        endDate: 2026-08
+        highlights:
+          - '#link("https://lore.kernel.org/all/?q=f%3A%22robertus+diawan+chris%22")[Contributed clean up and bug fixes on linux kernel.]'
+  - organization: Zero One Group
+    location: Remote
+    positions:
+      - title: Product Engineer 2
+        startDate: 2023-07
+        endDate: 2025-10
+        highlights:
+          - '#link("https://bruhtus.github.io/posts/golang-simple-query-composer-with-text-template-and-pgx/")[Contributed simple SQL query composer using golang text template with pgx (golang PostgreSQL driver).]'
+          - Contributed to the first microservice project at the company.
+      - title: Product Engineer 1
+        startDate: 2022-02
+        endDate: 2023-06
+        highlights:
+          - Maintained web application for tracking training activities as
+            backend and infrastructure engineer.
+          - Helped migrating application from GraphQL to REST API.
+      - title: Product Engineer Intern
+        startDate: 2021-11
+        endDate: 2022-01
+        highlights:
+          - Improved docker compose file with named volumes to prevent
+            unnecessary storage space increase.
+          - 'Contributed to mentoring process by suggesting to create #link("https://github.com/bruhtus/frontend-master-complete-intro-to-containers")[notes] about what we have learned.'
+
+educations:
+  - institution: Sepuluh Nopember Institute of Technology
+    location: Surabaya, Indonesia
+    degree: Bachelor of Mathematics
+    startDate: 2014-09
+    endDate: 2020-10
+    highlights:
+      - '*Thesis*: Implementation of Single Shot Detector (SSD) Method To Classify Pavement Distress on Video Data'
+      - '*Club*: Photography'
+
+activities:
+  - name: Contribute to open source projects
+    highlights:
+      - '#link("https://github.com/vim/vim/commit/25a736e323af9f5d22b3710ea9535a1a0dcf9a17")[Add all option for popup_during_fullscreen i3wm config syntax highlight in vim.]'
+      - '#link("https://github.com/tmux/tmux/issues/4719")[Bug report on tmux 3.6 pane_current_path race condition on systemd configuration.]'
+      - '#link("https://github.com/mihaifm/bufstop/pull/24")[Consistent window view in bufstop vim plugin.]'
+  - name: Live streaming programming experiment
+    highlights:
+      - '#link("https://youtube.com/playlist?list=PL0Uvin-so_c_Vm7jjx9G8ZMsSxB7y-mzt")[Create simple pomodoro timer in golang.]'
+      - '#link("https://youtube.com/playlist?list=PL0Uvin-so_c9eXp_ugGp6V5U-QpdZq0C7")[Create simple lisp interpreter to learn C programming language.]'
+
+projects:
+  - name: '#link("https://github.com/bruhtus/sclisp")[sclisp]'
+    highlights:
+      - 'Simple lisp interpreter (based on #link("https://www.buildyourownlisp.com/")[Build Your Own Lisp book]).'
+  - name: '#link("https://github.com/bruhtus/simo")[simo]'
+    highlights:
+      - Simple pomodoro timer CLI for status line.
+  - name: '#link("https://github.com/bruhtus/snapshot-script")[snapshot-script]'
+    highlights:
+      - 'Simple shell script to make linux snapshot using rsync (inspired by #link("https://github.com/linuxmint/timeshift")[timeshift]).'
+  - name: '#link("https://github.com/bruhtus/pyv")[pyv]'
+    highlights:
+      - 'Minimalist python virtual environment management tool (inspired by #link("https://continuumio-docs.readthedocs-hosted.com/miniconda/")[miniconda]).'
+  - name: '#link("https://github.com/bruhtus/vim-possession")[vim-possession]'
+    highlights:
+      - 'Simple vim session management plugin (inspired by #link("https://github.com/tpope/vim-obsession")[vim-obsession]).'
+  - name: '#link("https://github.com/bruhtus/dotfiles/blob/master/.config/zsh/sdfm")[sdfm]'
+    highlights:
+      - Simple dotfiles management tool.
+
+skills:
+  - '*Languages*: Bahasa indonesia (Native speaker), English (Professional working proficiency)'
+  - '*Programming*: Golang, C, Javascript, Typescript, Python, SQL (PostgreSQL)'
+  - '*Tools*: Vim, Shell (Bash, Zsh, Dash), Git, Docker, Rsync'
