@@ -54,6 +54,18 @@
   ctx
 }
 
+#let parseDate(isoDate) = {
+  if lower(isoDate) == "present" {
+    return "Present"
+  }
+
+  let year = int(isoDate.slice(0, 4))
+  let month = int(isoDate.slice(5, 7))
+
+  let date = datetime(year: year, month: month, day: 01)
+  return date.display("[month repr:short] [year repr:full]")
+}
+
 #let general(info) = block(
   width: 100%,
   {
@@ -82,19 +94,165 @@
     pad(x: 0em)[
       #generals.join([#sym.space.en #sym.bar.v #sym.space.en])
     ]
-  }
+  },
 )
 
-#let parseDate(isoDate) = {
-  if lower(isoDate) == "present" {
-    return "Present"
+#let experiences(info) = {
+  if "experiences" in info and info.experiences != none {
+    block[
+      = Experience
+
+      #for exp in info.experiences {
+        if ("organization" in exp and exp.organization != none) and ("location" in exp and exp.location != none) {
+          block(
+            width: 100%,
+            breakable: true,
+          )[
+            *#exp.organization* #h(1fr) *#exp.location*
+          ]
+        }
+
+        for position in exp.positions {
+          block(
+            width: 100%,
+            breakable: true,
+            above: 0.4em,
+            below: 1em,
+            {
+              let startDate = parseDate(position.startDate)
+              let endDate = parseDate(position.endDate)
+
+              text(style: "italic")[#position.title]
+              h(1fr)
+
+              if startDate == endDate [
+                #startDate
+              ] else [
+                #startDate #sym.dash.en #endDate
+              ]
+
+              for hi in position.highlights [
+                - #eval(hi, mode: "markup")
+              ]
+            },
+          )
+        }
+      }
+    ]
   }
+}
 
-  let year = int(isoDate.slice(0, 4))
-  let month = int(isoDate.slice(5, 7))
+#let educations(info) = {
+  if "educations" in info and info.educations != none {
+    block[
+      = Education
 
-  let date = datetime(year: year, month: month, day: 01)
-  return date.display("[month repr:short] [year repr:full]")
+      #for edu in info.educations {
+        let startDate = parseDate(edu.startDate)
+        let endDate = parseDate(edu.endDate)
+
+        block(
+          width: 100%,
+          breakable: true,
+        )[
+          *#edu.institution* #h(1fr) *#edu.location* \
+          #text(style: "italic")[#edu.degree]
+          #h(1fr)
+          #if startDate == endDate [
+            #startDate
+          ] else [
+            #startDate #sym.dash.en #endDate
+          ]
+        ]
+
+        if "highlights" in edu and edu.highlights != none {
+          block(
+            width: 100%,
+            breakable: true,
+            above: 0.4em,
+            below: 1em,
+            {
+              for hi in edu.highlights [
+                - #eval(hi, mode: "markup")
+              ]
+            },
+          )
+        }
+      }
+    ]
+  }
+}
+
+#let activities(info) = {
+  if "activities" in info and info.activities != none {
+    block[
+      = Activities
+
+      #for act in info.activities {
+        block(
+          width: 100%,
+          breakable: true,
+        )[
+          *#act.name*
+        ]
+
+        if "highlights" in act and act.highlights != none {
+          block(
+            width: 100%,
+            breakable: true,
+            above: 0.4em,
+            below: 1em,
+            {
+              for hi in act.highlights [
+                - #eval(hi, mode: "markup")
+              ]
+            },
+          )
+        }
+      }
+    ]
+  }
+}
+
+#let projects(info) = {
+  if "projects" in info and info.projects != none {
+    block[
+      = Projects
+
+      #for project in info.projects {
+        block(
+          width: 100%,
+          breakable: true,
+        )[
+          *#eval(project.name, mode: "markup")*
+        ]
+
+        block(
+          width: 100%,
+          breakable: true,
+          above: 0.4em,
+          below: 1em,
+          {
+            for hi in project.highlights [
+              - #eval(hi, mode: "markup")
+            ]
+          },
+        )
+      }
+    ]
+  }
+}
+
+#let skills(info) = {
+  if "skills" in info and info.skills != none {
+    block[
+      = Skills
+
+      #for skill in info.skills [
+        - #eval(skill, mode: "markup")
+      ]
+    ]
+  }
 }
 
 #show: config
@@ -104,150 +262,8 @@
   #general(info)
 ]
 
-#if "experiences" in info and info.experiences != none {
-  block[
-    = Experience
-
-    #for exp in info.experiences {
-      if ("organization" in exp and exp.organization != none) and ("location" in exp and exp.location != none) {
-        block(
-          width: 100%,
-          breakable: true,
-        )[
-          *#exp.organization* #h(1fr) *#exp.location*
-        ]
-      }
-
-      for position in exp.positions {
-        block(
-          width: 100%,
-          breakable: true,
-          above: 0.4em,
-          below: 1em,
-          {
-            let startDate = parseDate(position.startDate)
-            let endDate = parseDate(position.endDate)
-
-            text(style: "italic")[#position.title]
-            h(1fr)
-
-            if startDate == endDate [
-              #startDate
-            ] else [
-              #startDate #sym.dash.en #endDate
-            ]
-
-            for hi in position.highlights [
-              - #eval(hi, mode: "markup")
-            ]
-          },
-        )
-      }
-    }
-  ]
-}
-
-#if "educations" in info and info.educations != none {
-  block[
-    = Education
-
-    #for edu in info.educations {
-      let startDate = parseDate(edu.startDate)
-      let endDate = parseDate(edu.endDate)
-
-      block(
-        width: 100%,
-        breakable: true
-      )[
-        *#edu.institution* #h(1fr) *#edu.location* \
-        #text(style: "italic")[#edu.degree]
-        #h(1fr)
-        #if startDate == endDate [
-          #startDate
-        ] else [
-          #startDate #sym.dash.en #endDate
-        ]
-      ]
-
-      if "highlights" in edu and edu.highlights != none {
-        block(
-          width: 100%,
-          breakable: true,
-          above: 0.4em,
-          below: 1em,
-          {
-            for hi in edu.highlights [
-              - #eval(hi, mode: "markup")
-            ]
-          },
-        )
-      }
-    }
-  ]
-}
-
-#if "activities" in info and info.activities != none {
-  block[
-    = Activities
-
-    #for act in info.activities {
-      block(
-        width: 100%,
-        breakable: true,
-      )[
-        *#act.name*
-      ]
-
-      if "highlights" in act and act.highlights != none {
-        block(
-          width: 100%,
-          breakable: true,
-          above: 0.4em,
-          below: 1em,
-          {
-            for hi in act.highlights [
-              - #eval(hi, mode: "markup")
-            ]
-          },
-        )
-      }
-    }
-  ]
-}
-
-#if "projects" in info and info.projects != none {
-  block[
-    = Projects
-
-    #for project in info.projects {
-      block(
-        width: 100%,
-        breakable: true,
-      )[
-        *#eval(project.name, mode: "markup")*
-      ]
-
-      block(
-        width: 100%,
-        breakable: true,
-        above: 0.4em,
-        below: 1em,
-        {
-          for hi in project.highlights [
-            - #eval(hi, mode: "markup")
-          ]
-        },
-      )
-    }
-  ]
-}
-
-#if "skills" in info and info.skills != none {
-  block[
-    = Skills
-
-    #for skill in info.skills [
-      - #eval(skill, mode: "markup")
-    ]
-  ]
-}
+#experiences(info)
+#educations(info)
+#activities(info)
+#projects(info)
+#skills(info)
