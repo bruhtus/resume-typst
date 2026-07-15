@@ -1,8 +1,10 @@
 name: deploy-release
 on:
   push:
+    # Reference:
+    # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#filter-pattern-cheat-sheet
     tags:
-      - 'v\d+\.\d+\.\d+'
+      - 'v\d+.\d+.\d+'
 
 jobs:
   release:
