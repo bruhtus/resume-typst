@@ -1,8 +1,5 @@
 name: deploy-release
-on:
-  push:
-    tags:
-      - 'v\d+(?:\.\d+){2}'
+on: pull_request
 
 jobs:
   release:
