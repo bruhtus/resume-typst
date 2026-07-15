@@ -2,7 +2,7 @@ name: deploy-release
 on:
   push:
     tags:
-      - 'v\d+(?:\.\d+){2}'
+      - 'v\d+(?:.\d+){2}'
 
 jobs:
   release:
