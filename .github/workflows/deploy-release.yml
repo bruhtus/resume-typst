@@ -1,0 +1,30 @@
+name: deploy-release
+on:
+  push:
+    # Reference:
+    # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#filter-pattern-cheat-sheet
+    tags:
+      - 'v\d+.\d+.\d+'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    env:
+      RESUME_NAME: robertus-diawan-chris-resume
+
+    steps:
+      - name: Checkout current ref
+        uses: actions/checkout@v4
+
+      - name: Build resume
+        run: make name="$RESUME_NAME"
+
+      - name: Upload to github release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./${{ env.RESUME_NAME }}.pdf
+          asset_name: ${{ env.RESUME_NAME }}.pdf
