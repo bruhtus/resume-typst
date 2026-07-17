@@ -278,8 +278,22 @@
   },
 )
 
-#experiences(info)
-#educations(info)
-#activities(info)
-#projects(info)
-#skills(info)
+#let sections = (
+ experiences: experiences(info),
+ educations: educations(info),
+ activities: activities(info),
+ projects: projects(info),
+ skills: skills(info),
+)
+
+#if "sections" in info and info.sections != none {
+  for section in info.sections {
+    sections.at(section)
+  }
+} else {
+  let allSections = sections.values()
+
+  for section in allSections {
+    section
+  }
+}

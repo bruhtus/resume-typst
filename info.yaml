@@ -1,3 +1,10 @@
+sections:
+  - experiences
+  - educations
+  - activities
+  - projects
+  - skills
+
 general:
   name: Robertus Diawan Chris
   email: diawan@protonmail.com

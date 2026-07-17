@@ -21,6 +21,33 @@ The default pdf name is `resume.pdf`, and we can change that by providing the
 make name='your-name-resume'
 ```
 
+## Resume info
+
+There's general info, like name, email, and urls. Other than general info,
+there are also section info. The default order and available sections are:
+- experiences
+- educations
+- activities
+- projects
+- skills
+
+To change the sections order and exclude some sections that we have written in
+`info.yaml`, we can provide `sections` component in `info.yaml` like this:
+```yaml
+sections:
+  - experiences
+  - skills
+  - projects
+```
+
+From the example above, the sections that will appear in resume is
+experiences, skills, and projects (assuming we already have all of three
+sections in `info.yaml`), and the order is experiences section first, and then
+skills section, and the last section is projects section.
+
+If we omit `sections` component in `info.yaml`, all sections in `info.yaml`
+will appear with the default order.
+
 ## Commit Subject Style
 
 This project commit subject style based on [conventional
