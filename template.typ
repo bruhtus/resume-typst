@@ -46,7 +46,7 @@
     {
       set text(size: 1em, weight: "bold")
       upper(content.body)
-      v(-0.75em)
+      v(-1em)
       line(length: 100%, stroke: 1pt + black)
     },
   )
