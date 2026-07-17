@@ -55,9 +55,21 @@
 }
 
 #let parseDate(isoDate) = {
+  assert(
+    type(isoDate) == str,
+    message: "Expected a string value",
+  )
+
   if lower(isoDate) == "present" {
     return "Present"
   }
+
+  assert(
+    isoDate.starts-with(
+      regex("\\d{4}-\\d{2}")
+    ),
+    message: "Expected format yyyy-mm",
+  )
 
   let year = int(isoDate.slice(0, 4))
   let month = int(isoDate.slice(5, 7))
