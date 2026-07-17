@@ -64,15 +64,16 @@
     return "Present"
   }
 
+  let format = regex("(\\d{4})-(\\d{2})")
+
   assert(
-    isoDate.starts-with(
-      regex("\\d{4}-\\d{2}")
-    ),
+    isoDate.starts-with(format),
     message: "Expected format yyyy-mm",
   )
 
-  let year = int(isoDate.slice(0, 4))
-  let month = int(isoDate.slice(5, 7))
+  let formatMatch = isoDate.match(format)
+  let year = int(formatMatch.captures.at(0))
+  let month = int(formatMatch.captures.at(1))
 
   let date = datetime(year: year, month: month, day: 01)
   return date.display("[month repr:short] [year repr:full]")
