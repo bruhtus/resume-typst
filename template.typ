@@ -38,7 +38,7 @@
       set text(size: 1.5em, weight: "bold")
       upper(content.body)
       v(-0.2em)
-    }
+    },
   )
 
   show heading.where(level: 1): content => block(
@@ -270,10 +270,13 @@
 
 #show: config
 
-#align(center + top)[
-  #title[#info.general.name]
-  #general(info)
-]
+#align(
+  center + top,
+  {
+    title[#info.general.name]
+    general(info)
+  },
+)
 
 #experiences(info)
 #educations(info)
