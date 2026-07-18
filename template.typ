@@ -2,9 +2,9 @@
 
 // Reference:
 // https://forum.typst.app/t/how-to-add-page-numbers-only-if-document-length-exceeds-one-page/5323/2
-#let paging(page, last) = {
+#let paging(current, last) = {
   if last > 1 {
-    numbering("1 / 1", page, last)
+    numbering("1 / 1", current, last)
   }
 }
 
