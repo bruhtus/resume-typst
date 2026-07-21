@@ -48,7 +48,7 @@ skills section, and the last section is projects section.
 If we omit `sections` component in `info.yaml`, all sections in `info.yaml`
 will appear with the default order.
 
-## Commit Subject Style
+## Commit subject style
 
 This project commit subject style based on [conventional
 commit](https://www.conventionalcommits.org/en/v1.0.0/) with a few tweaks.
