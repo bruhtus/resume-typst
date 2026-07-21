@@ -291,9 +291,7 @@
     sections.at(section)
   }
 } else {
-  let allSections = sections.values()
-
-  for section in allSections {
-    section
+  for (_, initSection) in sections {
+    initSection
   }
 }
